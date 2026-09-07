@@ -219,27 +219,29 @@ img {
   object-position: center 42%;
 }
 
-/* Подпись под фотографией (Имя) */
+/* Подпись под фотографией — единый стиль для имени и роли */
 .person figcaption {
   font-family: Manrope, Arial, sans-serif;
-  /* Минимальный размер: 16px, на смартфонах: плавающий, Максимальный: 20px */
-  font-size: clamp(16px, 1.2vw + 12px, 20px); 
-  font-weight: 700;         /* Жирный текст для имени */
-  color: #FFFFFF;           /* Чистый белый цвет */
+  font-size: clamp(16px, 1.2vw + 12px, 20px);
   line-height: 1.4;
-  margin-top: 16px;         /* Отступ от фотографии до текста */
-  text-align: center;       /* Выравнивание по центру */
+  margin-top: 16px;
+  text-align: center;
 }
 
-/* Описание должности */
+/* Имя — жирное, белое */
+.person figcaption strong {
+  font-weight: 700;
+  color: #FFFFFF;
+  display: block; /* Перенос на новую строку */
+}
+
+/* Роль — обычное начертание, светло-серое */
 .person .role {
-  display: block;           /* Перенос на новую строку */
-  /* Текст должности будет пропорционально чуть меньше имени (от 14px до 18px) */
-  font-size: clamp(16px, 1.2vw + 12px, 20px); 
-  font-weight: 400;         /* Обычный, не жирный шрифт */
-  color: #ECECEC;           /* Светло-серый цвет */
-  opacity: 0.8;             /* Легкая прозрачность для мягкости */
-  margin-top: 4px;          /* Небольшой отступ от имени */
+  font-weight: 400;
+  color: #ECECEC;
+  opacity: 0.8;
+  display: block;
+  margin-top: 4px;
 }
 
 
