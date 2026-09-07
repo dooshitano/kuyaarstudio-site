@@ -422,7 +422,7 @@ img {
   display: inline-block;
   width: 100%;
   max-width: 1024px; 
-  padding: 40px 60px; 
+  padding: 40px 15px; 
   border: 1px solid #5570A5;
   background-color: transparent;
   box-sizing: border-box;
@@ -458,7 +458,7 @@ img {
   content: "";
   display: inline-block;
   width: 2px;
-  height: 30px;
+  height: 50px;
   background-color: #ECECEC;
   margin-left: 3px;
   vertical-align: -5px;
