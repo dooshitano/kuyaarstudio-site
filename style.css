@@ -1,46 +1,449 @@
-:root{--bg:#2b3d78;--text:#ECECEC;--muted:#aeb7d0;--line:rgba(255,255,255,.86);--max:1310px;--radius:10px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,Arial,sans-serif;font-weight:400}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}img{display:block;max-width:100%}
-.container{width:min(calc(100% - 136px),var(--max));margin:auto}.top{min-height:780px;position:relative;padding-top:35px}.nav{display:flex;align-items:center;justify-content:space-between}.mark{width:31px;height:31px;position:relative;display:block;overflow:hidden}.logo-image{width:100%;height:100%;display:block;object-fit:contain;mix-blend-mode:screen}
-.navlinks{display:flex;gap:47px;font-size:15px}.navlinks a{transition:opacity .2s}.navlinks a:hover{opacity:.65}.hero{display:flex;justify-content:center;text-align:center;padding-top:200px}.hero h1{font-size:43px;line-height:1.17;font-weight:500;letter-spacing:-1.5px;margin:0;max-width:1040px}.hero-cta{margin:72px auto 0;display:inline-flex;border:1px solid #fff;border-radius:16px;padding:14px 30px;font-size:14px;transition:.2s}.hero-cta:hover{background:#fff;color:var(--bg)}
-.section{padding:35px 0 0}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px}.section h2{font-size:36px;line-height:1;font-weight:500;letter-spacing:-1px;margin:0}.index{font-size:32px;color:var(--muted);font-weight:400}.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:78px;align-items:start}.copy{font-size:14px;line-height:1.55;max-width:540px}.copy p{margin:0 0 25px}.about-images{display:grid;gap:30px}.about-images img{width:100%;height:340px;object-fit:cover;border-radius:10px}.about-images img:first-child{object-position:center 45%}.team{margin-top:44px}.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:68px}.person{text-align:center}.person img{width:100%;height:450px;object-fit:cover;border-radius:10px}.person:first-child img{object-position:center 42%}.person figcaption{font-size:14px;line-height:1.35;margin-top:18px}.person .role{opacity:.95}
-.cases{margin-top:105px}.filters{display:flex;gap:26px;margin:0 0 30px}.filter{border:1px solid rgba(255,255,255,.9);background:transparent;border-radius:18px;min-width:110px;padding:7px 25px;cursor:pointer;font-size:13px}.filter.active{background:rgba(19,30,72,.34);border-color:transparent}.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.case{border-radius:10px;overflow:hidden;min-height:390px;position:relative;cursor:pointer;transition:transform .25s,filter .25s}.case:hover{transform:translateY(-4px);filter:brightness(1.05)}.case h3{font-size:30px;line-height:1.25;font-weight:400;margin:22px}.case.delivery{background:#78b17a}.case.guide{background:#737d84}.case.kam{background:#b4b16e}.case img{position:absolute;object-fit:contain}.delivery img{width:70%;height:72%;left:16%;bottom:-2%}.guide img{width:78%;height:83%;right:-4%;bottom:-9%}.kam img{width:83%;height:78%;right:-1%;bottom:-5%}.case.hidden{display:none}
-.contacts{margin-top:65px;padding-bottom:78px}.contact-info{font-size:20px;line-height:1.55}.contact-info a{display:block}.contact-info a:hover{text-decoration:underline}
-.modal{position:fixed;inset:0;background:rgba(10,17,40,.75);display:none;place-items:center;padding:25px;z-index:20;backdrop-filter:blur(8px)}.modal.open{display:grid}.modal-card{width:min(720px,100%);background:ECECEC;color:#1d2748;border-radius:14px;padding:34px;position:relative}.modal-card h3{font-size:30px;font-weight:500;margin:0 0 12px}.modal-card p{font-size:16px;line-height:1.55;margin:0 0 22px}.close{position:absolute;right:18px;top:14px;border:0;background:none;color:#1d2748;font-size:30px;cursor:pointer}.modal-link{display:inline-block;border:1px solid #1d2748;border-radius:14px;padding:12px 20px}.footer-line{height:1px;background:rgba(255,255,255,.35)}
+/* ==========================================================================
+   1. ПЕРЕМЕННЫЕ И БАЗОВЫЕ СТИЛИ (RESET)
+   ========================================================================== */
+:root {
+  --bg: #2b3d78;
+  --text: #ECECEC;
+  --muted: #aeb7d0;
+  --line: rgba(255, 255, 255, .86);
+  --max: 1310px;
+  --radius: 10px;
+}
 
-/* Контейнер-рамка */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Manrope, Arial, sans-serif;
+  font-weight: 400;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: none;       /* Исправлено: убирает стандартную рамку кнопок-фильтров */
+  background: none;   /* Исправлено: дефолтный сброс для кнопок */
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   2. СЕТКА И СТРУКТУРА ПАНЕЛЕЙ (LAYOUT)
+   ========================================================================== */
+.container {
+  width: min(calc(100% - 136px), var(--max));
+  margin: auto;
+}
+
+.top {
+  min-height: 780px;
+  position: relative;
+  padding-top: 35px;
+}
+
+/* Шапка сайта */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mark {
+  width: 51px;
+  height: 51px;
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.logo-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  mix-blend-mode: screen;
+}
+
+.navlinks {
+  display: flex;
+  gap: 47px;
+  font-size: 24px;
+}
+
+.navlinks a {
+  transition: opacity .2s;
+}
+
+.navlinks a:hover {
+  opacity: .65;
+}
+
+/* Главный экран (Hero) */
+.hero {
+  display: flex;
+  flex-direction: column; /* Исправлено: центрирует кнопку строго под заголовком */
+  align-items: center;
+  text-align: center;
+  padding-top: 200px;
+}
+
+.hero h1 {
+  font-size: 64px;
+  line-height: 1.17;
+  font-weight: 500;
+  letter-spacing: -1.5px;
+  margin: 0;
+  max-width: 1040px;
+}
+
+.hero-cta {
+  margin: 72px auto 0;
+  display: inline-flex;
+  border: 1px solid #fff;
+  border-radius: 16px;
+  padding: 14px 30px;
+  font-size: 14px;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.hero-cta:hover {
+  background: #fff;
+  color: var(--bg);
+}
+
+/* ==========================================================================
+   3. ОБЩИЕ СЕКЦИИ И ТЕКСТОВЫЕ БЛОКИ
+   ========================================================================== */
+.section {
+  padding: 35px 0 0;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.section h2 {
+  font-size: 50px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+.index {
+  font-size: 50px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* Блок "О нас" */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 78px;
+  align-items: start;
+}
+
+.copy {
+  font-size: 20px;
+  line-height: 1.55;
+  max-width: 540px;
+}
+
+.copy p {
+  margin: 0 0 25px;
+}
+
+.about-images {
+  display: grid;
+  gap: 30px;
+}
+
+.about-images img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  border-radius: var(--radius); /* Оптимизация: используем вашу переменную */
+}
+
+.about-images img:first-child {
+  object-position: center 45%;
+}
+
+/* ==========================================================================
+   4. КОМАНДА (TEAM)
+   ========================================================================== */
+.team {
+  margin-top: 44px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 68px;
+}
+
+.person {
+  text-align: center;
+  margin: 0; /* Сброс дефолтных отступов <figure> */
+}
+
+.person img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: var(--radius); /* Оптимизация: используем переменную */
+}
+
+.person:first-child img {
+  object-position: center 42%;
+}
+
+/* Подпись под фотографией (Имя) */
+.person figcaption {
+  font-family: Manrope, Arial, sans-serif;
+  font-size: 20px;          /* Размер шрифта как в концепте */
+  font-weight: 700;         /* Жирный текст для имени */
+  color: #FFFFFF;           /* Чистый белый цвет */
+  line-height: 1.4;
+  margin-top: 16px;         /* Отступ от фотографии до текста */
+  text-align: center;       /* Выравнивание по центру */
+}
+
+/* Описание должности */
+.person .role {
+  display: block;           /* Перенос на новую строку */
+  font-size: 20px;          /* Размер чуть меньше имени */
+  font-weight: 400;         /* Обычный, не жирный шрифт */
+  color: #ECECEC;           /* Светло-серый цвет, как ваш курсор */
+  opacity: 0.8;             /* Легкая прозрачность для мягкости */
+  margin-top: 4px;          /* Небольшой отступ от имени */
+}
+
+
+/* ==========================================================================
+   5. ПОРТФОЛИО / КЕЙСЫ (CASES)
+   ========================================================================== */
+.cases {
+  margin-top: 105px;
+}
+
+.filters {
+  display: flex;
+  gap: 26px;
+  margin: 0 0 30px;
+}
+
+.filter {
+  /* Тонкая рамка светло-голубого/серого цвета как на картинке */
+  border: 1px solid #A3B5DF; 
+  background: transparent;
+  
+  /* Эффект капсулы: задаем заведомо большое скругление */
+  border-radius: 100px; 
+  
+  /* Внутренние отступы, чтобы кнопка была просторной */
+  padding: 10px 28px; 
+  
+  font-family: Manrope, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #ECECEC;
+  
+  cursor: pointer;
+  transition: background .2s, border-color .2s, color .2s;
+}
+
+/* Стиль для активной (выбранной) кнопки */
+.filter.active {
+  background: #FFF;        /* Белая заливка */
+  border-color: #FFF;
+  color: var(--bg);        /* Текст цвета фона вашего сайта */
+}
+
+/* Эффект при наведении мышки на неактивную кнопку */
+.filter:hover:not(.active) {
+  border-color: #FFF;      /* Обводка становится ярко-белой */
+  color: #FFF;
+}
+
+
+.case-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.case {
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 390px;
+  position: relative;
+  cursor: pointer;
+  transition: transform .25s, filter .25s;
+}
+
+.case:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.05);
+}
+
+.case h3 {
+  font-size: 30px;
+  line-height: 1.25;
+  font-weight: 400;
+  margin: 22px;
+}
+
+/* Цвета кейсов */
+.case.delivery { background: #78b17a; }
+.case.guide    { background: #737d84; }
+.case.kam      { background: #b4b16e; }
+
+.case img {
+  position: absolute;
+  object-fit: contain;
+}
+
+.delivery img { width: 70%;  height: 72%; left: 16%;  bottom: -2%; }
+.guide img    { width: 78%;  height: 83%; right: -4%; bottom: -9%; }
+.kam img      { width: 83%;  height: 78%; right: -1%; bottom: -5%; }
+
+.case.hidden {
+  display: none;
+}
+
+/* ==========================================================================
+   6. КОНТАКТЫ И МОДАЛЬНОЕ ОКНО
+   ========================================================================== */
+.contacts {
+  margin-top: 65px;
+  padding-bottom: 78px;
+}
+
+.contact-info {
+  font-size: 20px;
+  line-height: 1.55;
+}
+
+.contact-info a {
+  display: block;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* Модалка */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 17, 40, .75);
+  display: none;
+  place-items: center;
+  padding: 25px;
+  z-index: 20;
+  backdrop-filter: blur(8px);
+}
+
+.modal.open {
+  display: grid;
+}
+
+.modal-card {
+  width: min(720px, 100%);
+  background: #ECECEC; /* Исправлено: пропущен знак # перед цветом */
+  color: #1d2748;
+  border-radius: 14px;
+  padding: 34px;
+  position: relative;
+}
+
+.modal-card h3 {
+  font-size: 30px;
+  font-weight: 500;
+  margin: 0 0 12px;
+}
+
+.modal-card p {
+  font-size: 16px;
+  line-height: 1.55;
+  margin: 0 0 22px;
+}
+
+.close {
+  position: absolute;
+  right: 18px;
+  top: 14px;
+  border: 0;
+  background: none;
+  color: #1d2748;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.modal-link {
+  display: inline-block;
+  border: 1px solid #1d2748;
+  border-radius: 14px;
+  padding: 12px 20px;
+}
+
+.footer-line {
+  height: 1px;
+  background: rgba(255, 255, 255, .35);
+}
+
+/* ==========================================================================
+   7. ФИГМА-РАМКА (EDITOR BOX) + АНИМАЦИЯ ПЕЧАТИ
+   ========================================================================== */
 .editor-box {
   position: relative;
   display: inline-block;
   width: 100%;
-  
-  /* Увеличили максимальную ширину, чтобы рамка была просторнее по бокам */
   max-width: 1024px; 
-  
-  /* padding: ВЕРХ/НИЗ  БОКА. Сделали рамку значительно шире внутри */
   padding: 40px 60px; 
-  
   border: 1px solid #5570A5;
   background-color: transparent;
   box-sizing: border-box;
 }
 
-/* Общий стиль для всех 4-х маркеров */
+/* Точки */
 .editor-box .dot {
   position: absolute;
   width: 7px;
   height: 7px;
-  background-color: #FFF; /* Белый квадрат */
-  border: 1px solid #5570A5; /* Синий контур */
+  background-color: #FFF;
+  border: 1px solid #5570A5;
   box-sizing: border-box;
 }
 
-/* Точное позиционирование каждого маркера наполовину наружу рамки */
 .top-left     { top: -4px; left: -4px; }
 .top-right    { top: -4px; right: -4px; }
 .bottom-left  { bottom: -4px; left: -4px; }
 .bottom-right { bottom: -4px; right: -4px; }
 
-/* Стиль текста и курсора (остается вашим) */
+/* Текст */
 .typing-text {
   display: inline-block;
   font-family: Manrope, Arial, sans-serif;
@@ -50,6 +453,7 @@
   margin: 0;
   width: 100%;
 }
+
 .typing-text::after {
   content: "";
   display: inline-block;
@@ -59,14 +463,195 @@
   margin-left: 3px;
   vertical-align: -5px;
 }
+
 .typing-text.blink::after {
   animation: blink 1s step-end infinite;
 }
+
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
 
+/* ==========================================================================
+   8. АДАПТИВНОСТЬ (MEDIA QUERIES)
+   ========================================================================== */
 
-@media(max-width:850px){.container{width:min(calc(100% - 40px),var(--max))}.top{min-height:690px}.navlinks{gap:18px;font-size:12px}.hero{padding-top:170px}.hero h1{font-size:34px}.about-grid{grid-template-columns:1fr;gap:35px}.about-images img{height:280px}.team-grid{gap:16px}.person img{height:300px}.person figcaption{font-size:11px}.section h2{font-size:30px}.index{font-size:27px}.case-grid{grid-template-columns:1fr}.case{min-height:330px}.contact-info{font-size:17px}}
-@media(max-width:520px){.top{min-height:620px;padding-top:24px}.navlinks{gap:13px;font-size:10px}.mark{transform:scale(.8)}.hero{padding-top:150px}.hero h1{font-size:29px;letter-spacing:-1px}.hero-cta{margin-top:55px;padding:12px 22px}.section{padding-top:25px}.section-head{margin-bottom:22px}.section h2{font-size:27px}.index{font-size:24px}.copy{font-size:12px}.about-images{gap:15px}.about-images img{height:220px}.team{margin-top:30px}.team-grid{grid-template-columns:1fr;gap:28px}.person img{height:420px}.person figcaption{font-size:12px}.cases{margin-top:70px}.filters{gap:8px}.filter{min-width:0;flex:1;padding:7px 9px;font-size:11px}.case{min-height:300px}.case h3{font-size:24px;margin:18px}.contacts{margin-top:55px;padding-bottom:50px}}
+/* Планшеты (до 850px) */
+@media(max-width: 850px) {
+  .container {
+    width: min(calc(100% - 40px), var(--max));
+  }
+  .top {
+    min-height: 690px;
+  }
+  .navlinks {
+    gap: 18px;
+    font-size: 12px;
+  }
+  .hero {
+    padding-top: 170px;
+  }
+  .hero h1 {
+    font-size: 34px;
+  }
+  
+  /* Новое: Адаптивность для рамки Figma на планшетах */
+  .editor-box {
+    padding: 30px 40px;
+    max-width: 90%;
+  }
+  .typing-text {
+    font-size: 20px;
+  }
+  .typing-text::after {
+    height: 24px;
+    vertical-align: -3px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .about-images img {
+    height: 280px;
+  }
+  .team-grid {
+    gap: 16px;
+  }
+  .person img {
+    height: 300px;
+  }
+  .person figcaption {
+    font-size: 11px;
+  }
+  .section h2 {
+    font-size: 30px;
+  }
+  .index {
+    font-size: 27px;
+  }
+  .case-grid {
+    grid-template-columns: 1fr;
+  }
+  .case {
+    min-height: 330px;
+  }
+  .contact-info {
+    font-size: 17px;
+  }
+}
+
+/* Мобильные телефоны (до 520px) */
+@media(max-width: 520px) {
+  .top {
+    min-height: 620px;
+    padding-top: 24px;
+  }
+  .navlinks {
+    gap: 13px;
+    font-size: 10px;
+  }
+  .mark {
+    transform: scale(.8);
+  }
+  .hero {
+    padding-top: 150px;
+  }
+  .hero h1 {
+    font-size: 29px;
+    letter-spacing: -1px;
+  }
+  .hero-cta {
+    margin-top: 55px;
+    padding: 12px 22px;
+  }
+  
+  /* Новое: Адаптивность для рамки Figma на смартфонах */
+  .editor-box {
+    padding: 20px 20px;
+    max-width: 100%;
+  }
+  .typing-text {
+    font-size: 16px;
+  }
+  .typing-text::after {
+    height: 20px;
+    vertical-align: -2px;
+  }
+
+  .section {
+    padding-top: 25px;
+  }
+@media(max-width: 520px) {
+  .section-head {
+    margin-bottom: 22px;
+  }
+  
+  .section h2 {
+    font-size: 27px;
+  }
+  
+  .index {
+    font-size: 24px;
+  }
+  
+  .copy {
+    font-size: 12px;
+  }
+  
+  .about-images {
+    gap: 15px;
+  }
+  
+  .about-images img {
+    height: 220px;
+  }
+  
+  .team {
+    margin-top: 30px;
+  }
+  
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  
+  .person img {
+    height: 420px;
+  }
+  
+  .person figcaption {
+    font-size: 12px;
+  }
+  
+  .cases {
+    margin-top: 70px;
+  }
+  
+  .filters {
+    gap: 8px;
+  }
+  
+  .filter {
+    min-width: 0;
+    flex: 1;
+    padding: 7px 9px;
+    font-size: 11px;
+  }
+  
+  .case {
+    min-height: 300px;
+  }
+  
+  .case h3 {
+    font-size: 24px;
+    margin: 18px;
+  }
+  
+  .contacts {
+    margin-top: 55px;
+    padding-bottom: 50px;
+  }
+}
+}
